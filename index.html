@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name = "viewport" content = "width=device-width,initial-scale=1.0">
     <title>Dipika's Neighborhood Map</title>
-    <link href="style.css" rel="stylesheet">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -13,6 +12,17 @@
   <body>
     <!-- Error out if the browser disabled JS or does not support it. -->
     <noscript>Sorry, your browser does not support JavaScript!</noscript>
+
+    <!-- Aside menu containing Knockout.js based POI list and filter functions -->
+    <aside id="POI-area">
+      <!-- An input area for user to type and filter -->
+      <input id="filter-string" type="text" data-bind="textInput: POIFilter">
+
+      <!-- The full/filtered list of elements -->
+      <ul data-bind="foreach: myPOIsKOList">
+        <li data-bind="text: title, click: $parent.selectThisPOI"></li>
+      </ul>
+    </aside>
     <div id="map"></div>
 
     <!-- Load libraries and frameworks -->
