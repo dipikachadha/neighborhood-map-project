@@ -1,15 +1,23 @@
-var map;
+myPOIs || Error('Points of interest could not be loaded!');
+myMapStyles || Error('Map Styling could not be loaded!');
+
 function initMap() {
-  // The area where the map would center on
-  const cary_NC = {lat: 35.7881812, lng: -78.7951261};
-  // Constructor creates a new map - only center and zoom are required.
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: cary_NC,
-    zoom: 12,
+    // The area where the map would center on
+    const cary_NC = {lat: 35.7881812, lng: -78.7951261};
+
+    // Constructor creates a new map - only center and zoom are required.
+    const map = new google.maps.Map(document.getElementById('map'), {
+        center: cary_NC,
+        zoom: 12,
+        style: myMapStyles
     });
 
-  const marker = new google.maps.Marker({
-    position: cary_NC,
-    map: map
-    });
+    const markersArray = myPOIs.map(
+        POI => {
+            new google.maps.Marker({
+                position: POI.location,
+                map: map
+            });
+        }
+    );
 }
