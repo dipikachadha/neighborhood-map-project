@@ -4,7 +4,7 @@ myMapStyles || Error('Map Styling could not be loaded!');
 // We make a POIObject out of all POI (Point of Interest) data. This
 // object should contain the POI's KO properties and the associated
 // marker in the maps.
-function POIObject (POI) {
+function POIObject (POI, map) {
   let that = this; // save context
 
   this.location = ko.observable(POI.location);
@@ -15,11 +15,11 @@ function POIObject (POI) {
     position: that.location(),
     title: that.title(),
     animation: google.maps.Animation.DROP,
-    map: that.map
+    map: map
   });
 }
 
-function AppViewModel () {
+function AppViewModel (map) {
   const that = this; // save the context for referring later on if need be.
 
   // We need a KO observable array of POIs. This helps HTML view bindings and
@@ -32,13 +32,13 @@ function AppViewModel () {
   this.selectThisPOI = POI =>
     {
       console.log(`Selected ${POI.title()}`);
-      this.currentPOI(POI);
+      this.currentPOI(POI, map);
     };
 
   // The filter string is input by the user via the filter-string
   // input in HTML. It needs to be converted to a regex for matching
   // against the full list later on.
-  this.POIFilter = ko.observable("");
+  this.POIFilter = ko.observable('');
 
   // Do the regex conversion here, and give a graceful alert if the
   // input string is not a valid regex. It would otherwise give a hairy
@@ -65,5 +65,5 @@ function AppViewModel () {
 
 function init () {
   const map = initMap();
-  ko.applyBindings(new AppViewModel());
+  ko.applyBindings(new AppViewModel(map));
 }
