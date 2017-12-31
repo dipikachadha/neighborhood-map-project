@@ -33,8 +33,7 @@ function AppViewModel (map) {
 
   this.selectThisPOI = POI =>
     {
-      console.log(`Selected ${POI.title()}`);
-
+      toggleBounce.call(POI.mapMarker);
       this.currentPOI(POI, map);
     };
 
