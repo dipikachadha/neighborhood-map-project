@@ -18,7 +18,8 @@
     <!-- Aside menu containing Knockout.js based POI list and filter functions -->
     <aside id="POI-area">
       <!-- An input area for user to type and filter -->
-      <input id="filter-string" type="text" data-bind="textInput: POIFilter">
+      <input id="filter-string" type="search" placeholder="Type to search..."
+        data-bind="textInput: POIFilter"/>
 
       <!-- The full/filtered list of elements -->
       <ul data-bind="foreach: myPOIsKOList">
@@ -35,6 +36,7 @@
     <!-- Load my custom scripts -->
     <script src="js/mapStyles.js"></script>
     <script src="js/myPOIs.js"></script>
+    <script src="js/map.js"></script>
     <script src="js/app.js"></script>
     <script async defer src=
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyBLJo0rODKRipcVMG7sbb4krTwGFZTF0KI&v=3&callback=initMap">
