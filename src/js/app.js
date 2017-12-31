@@ -41,11 +41,21 @@ function AppViewModel () {
       this.currentPOI(POI);
     };
 
+  // The filter string is input by the user via the filter-string
+  // input in HTML. It needs to be converted to a regex for matching
+  // against the full list later on.
   this.POIFilter = ko.observable("");
+  this.filterRegex = ko.computed(_ => new RegExp(that.POIFilter()));
 
-  ko.computed(_ =>
-    that.myPOIObjList(
-      that.myPOIObjList().filter(POI => POI.matchesSearch)));
+  // Here we need to filter the myPOIObjList as per the user input above.
+  // A new ko.computed needs to be used instead of modifying the original
+  // myPOIObjList, else we risk losing the full list we had if there was
+  // a bad search with no matches.
+  this.filteredPOIList = ko.computed(_ => {
+    return that.myPOIObjList().filter(
+        POI => that.filterRegex().test(POI.title().toLowerCase())
+      );
+    });
 }
 
 function init () {

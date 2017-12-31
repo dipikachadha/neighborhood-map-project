@@ -24,7 +24,7 @@
         data-bind="textInput: POIFilter"/>
 
       <!-- The full/filtered list of elements -->
-      <ul data-bind="foreach: myPOIObjList">
+      <ul data-bind="foreach: filteredPOIList">
         <li data-bind="text: title, click: $parent.selectThisPOI"></li>
       </ul>
     </aside>
