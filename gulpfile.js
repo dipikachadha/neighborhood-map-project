@@ -1,14 +1,18 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var rename = require('gulp-rename');
-var uglify = require('gulp-uglify');
+const gulp = require('gulp');
+const uglifyes = require('uglify-es');
+const composer = require('gulp-uglify/composer');
+const uglify = composer(uglifyes, console);
 
-//script paths
-var jsFiles = 'src/js/*.js',
-    jsDest = 'dist/js';
+gulp.task('compress-js', () => {
+    return gulp.src('src/js/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('dist/js/'))
+});
 
-gulp.task('scripts', function() {
-    return gulp.src(jsFiles)
-        .pipe(concat('scripts.js'))
-        .pipe(gulp.dest(jsDest));
+const cleanCSS = require('gulp-clean-css');
+
+gulp.task('compress-css', () => {
+  return gulp.src('src/css/*.css')
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(gulp.dest('dist/css/'));
 });
