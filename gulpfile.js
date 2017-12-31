@@ -12,8 +12,23 @@ const paths = {
   origHTML: "src/*.html",
   destJS: "dist/js/",
   destCSS: "dist/css/",
-  destHTML: "dist/"
+  destHTML: "dist/",
+  docs: "docs",
 }
+
+const docco = require("gulp-docco");
+
+gulp.task('create-js-docs', () => {
+  return gulp.src(paths.origJS)
+  .pipe(docco())
+  .pipe(gulp.dest(paths.docs));
+});
+
+gulp.task('create-html-docs', () => {
+  return gulp.src(paths.origHTML)
+  .pipe(docco())
+  .pipe(gulp.dest(paths.docs));
+});
 
 gulp.task('compress-js', cb => {
   pump([
@@ -46,4 +61,5 @@ gulp.task('watch', function() {
 
 // The default task (called when you run `gulp` from cli)
 gulp.task('default',
-  ['watch', 'compress-js', 'compress-css', 'compress-html']);
+  ['watch', 'create-js-docs', 'create-html-docs',
+  'compress-js', 'compress-css', 'compress-html']);
