@@ -45,6 +45,10 @@ function AppViewModel () {
   // input in HTML. It needs to be converted to a regex for matching
   // against the full list later on.
   this.POIFilter = ko.observable("");
+
+  // Do the regex conversion here, and give a graceful alert if the
+  // input string is not a valid regex. It would otherwise give a hairy
+  // TypeError or something likewise in the console.
   this.filterRegex = ko.computed(_ => {
     try {
       return new RegExp(that.POIFilter());
