@@ -1,0 +1,26 @@
+{
+  "name": "neighborhood-map-project",
+  "version": "1.0.0",
+  "description": "Capstone project for the Udacity Frontend Web Developer Nanodegree program",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "udacity",
+    "frontend",
+    "nanodegree",
+    "project",
+    "using",
+    "APIs",
+    "eateries",
+    "around",
+    "Cary",
+    "NC"
+  ],
+  "author": "dipikachadha (dipika.chadha@gmail.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
