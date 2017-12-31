@@ -41,6 +41,19 @@ function setMarkerAnimations (marker) {
   });
 }
 
+function updateMarkers (fullList, filteredList, map) {
+// Add and remove markers as per the list
+// Remove markers for elements not present in filter
+_.difference(fullList, filteredList).forEach(
+  POI => POI.mapMarker.setMap(null)
+);
+
+// Add ones in the intersection to avoid losing all markers
+_.intersection(fullList, filteredList).forEach(
+  POI => POI.mapMarker.setMap(map)
+);
+}
+
 function toggleBounce() {
   if (this.getAnimation() !== null) {
       this.setAnimation(null);

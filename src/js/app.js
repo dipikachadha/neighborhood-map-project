@@ -34,6 +34,7 @@ function AppViewModel (map) {
   this.selectThisPOI = POI =>
     {
       console.log(`Selected ${POI.title()}`);
+
       this.currentPOI(POI, map);
     };
 
@@ -59,9 +60,12 @@ function AppViewModel (map) {
   // myPOIObjList, else we risk losing the full list we had if there was
   // a bad search with no matches.
   this.filteredPOIList = ko.computed(_ => {
-    return that.myPOIObjList().filter(
+    // Filter the list first
+    const filteredList = that.myPOIObjList().filter(
         POI => that.filterRegex().test(POI.title().toLowerCase())
       );
+    updateMarkers(this.myPOIObjList(), filteredList, map);
+    return filteredList;
     });
 }
 
