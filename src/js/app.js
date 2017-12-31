@@ -11,12 +11,6 @@ function POIObject (POI) {
   this.address = ko.observable(POI.address);
   this.title = ko.observable(POI.title);
 
-  this.matchesSearch = true;
-  // this.matchesSearch = ko.computed(_ => {
-  //   const regex = new RegExp(POIFilter());
-  //   return regex.test(this.title.toLowercase());
-  // });
-  //
   this.mapMarker = new google.maps.Marker({
     position: that.location(),
     title: that.title(),
