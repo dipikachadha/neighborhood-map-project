@@ -6,6 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dipikachadha/neighborhood-map-project.git"
+  },
   "keywords": [
     "udacity",
     "frontend",
@@ -30,6 +34,7 @@
     "gulp-uglify": "^3.0.0",
     "jshint": "^2.9.5",
     "jshint-stylish": "^2.2.1",
+    "pump": "^2.0.0",
     "uglify-es": "^3.3.4"
   }
 }

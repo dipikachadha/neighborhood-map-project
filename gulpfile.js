@@ -4,6 +4,7 @@ const composer = require('gulp-uglify/composer');
 const uglify = composer(uglifyes, console);
 const cleanCSS = require('gulp-clean-css');
 const htmlmin = require('gulp-htmlmin');
+const pump = require('pump');
 
 const paths = {
   origJS: "src/js/*.js",
@@ -16,7 +17,7 @@ const paths = {
 
 gulp.task('compress-js', () => {
     return gulp.src(paths.origJS)
-    .pipe(uglify())
+    .pipe(uglify().on('error', )
     .pipe(gulp.dest(paths.destJS))
 });
 
