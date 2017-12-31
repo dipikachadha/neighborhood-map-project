@@ -16,3 +16,11 @@ gulp.task('compress-css', () => {
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest('dist/css/'));
 });
+
+const htmlmin = require('gulp-htmlmin');
+
+gulp.task('compress-html', function() {
+  return gulp.src('src/*.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('dist'));
+});
