@@ -1,5 +1,5 @@
-myPOIs || Error('Points of interest could not be loaded!');
-myMapStyles || Error('Map Styling could not be loaded!');
+myPOIs || alert('Points of interest could not be loaded!');
+myMapStyles || alert('Map Styling could not be loaded!');
 
 // We make a POIObject out of all POI (Point of Interest) data. This
 // object should contain the POI's KO properties and the associated
@@ -17,6 +17,8 @@ function POIObject (POI, map) {
     animation: google.maps.Animation.DROP,
     map: map
   });
+
+  setMarkerAnimations(this.mapMarker);
 }
 
 function AppViewModel (map) {
@@ -65,5 +67,6 @@ function AppViewModel (map) {
 
 function init () {
   const map = initMap();
+
   ko.applyBindings(new AppViewModel(map));
 }

@@ -21,15 +21,20 @@ html, body { height: 100%; margin: 0; padding: 0; }
 }
 
 aside {
-    margin-left: 50px;
+    margin-left: 0px;
+    margin-top: 50%;
     left: 70px;
     overflow-y: hidden;
-    /*width: 340px;*/
-    background: #222;
+    width: 20%;
+    background: #fff;
     position: fixed;
-    height: 100%;
+    height: 50%;
     z-index: 10000;
     transition: all .4s ease 0s;
+}
+
+aside ul li .hover {
+  text-emphasis: bold;
 }
 
 .sidebar-nav {
