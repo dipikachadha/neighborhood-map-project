@@ -45,7 +45,14 @@ function AppViewModel () {
   // input in HTML. It needs to be converted to a regex for matching
   // against the full list later on.
   this.POIFilter = ko.observable("");
-  this.filterRegex = ko.computed(_ => new RegExp(that.POIFilter()));
+  this.filterRegex = ko.computed(_ => {
+    try {
+      return new RegExp(that.POIFilter());
+    } catch (err) {
+      alert('Invalid Input!');
+      return new RegExp('');
+    }
+  });
 
   // Here we need to filter the myPOIObjList as per the user input above.
   // A new ko.computed needs to be used instead of modifying the original
