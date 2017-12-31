@@ -15,10 +15,14 @@ const paths = {
   destHTML: "dist/"
 }
 
-gulp.task('compress-js', () => {
-    return gulp.src(paths.origJS)
-    .pipe(uglify().on('error', )
-    .pipe(gulp.dest(paths.destJS))
+gulp.task('compress-js', cb => {
+  pump([
+    gulp.src(paths.origJS),
+    uglify(),
+    gulp.dest(paths.destJS)
+  ],
+  cb
+  );
 });
 
 gulp.task('compress-css', () => {
