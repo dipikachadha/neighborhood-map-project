@@ -24,9 +24,7 @@
 
       <h4 id="list_header">
         Indian Restaurants
-        <a id="menu-toggle" href="#">
-          <span id ="main_icon" class="glyphicon glyphicon-align-justify"></span>
-        </a>
+        <i id="menu-toggle" class="fa fa-bars" aria-hidden="true"></i>
       </h4>
 
       <!-- An icon to withdraw the list if need be -->
@@ -37,9 +35,11 @@
         data-bind="textInput: POIFilter"/>
 
       <!-- The full/filtered list of elements -->
-      <ul data-bind="foreach: filteredPOIList">
-        <li data-bind="text: title, click: openInfo"></li>
-      </ul>
+      <div id="wrapper" class="active">
+        <ul data-bind="foreach: filteredPOIList">
+          <li data-bind="text: title, click: openInfo"></li>
+        </ul>
+      </div>
     </aside>
 
     <!-- Map area -->

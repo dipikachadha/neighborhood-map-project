@@ -44,6 +44,7 @@ gulp lint
 ```
 GET file:///.../neighborhood-map-project/bower_components/materialize/dist/fonts/roboto/Roboto-Light.woff2 net::ERR_FILE_NOT_FOUND
 ```
+3. List CSS animations need to be more graceful.
 
 # Future Application
 - Develop project to Udacity provided Rubric.

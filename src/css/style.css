@@ -46,6 +46,23 @@ aside #filter-string {
 	margin-left: 5px;
 }
 
+/* Add list retraction properties to aside list */
+#wrapper {
+	transition: all 2s ease-in-out;
+	display: none;
+}
+
+#wrapper.active {
+	display: inherit;
+}
+
+.fa {
+	color: yellow;
+	display: inline;
+	cursor: pointer;
+}
+
+/* Add header properties */
 header {
 	opacity: 0.5;
 	filter: alpha(opacity=50); /* For IE8 and earlier */
