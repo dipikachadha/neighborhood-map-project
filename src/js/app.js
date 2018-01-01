@@ -21,9 +21,10 @@ function POIObject (POI, map) {
 
   // Create an onclick event to open the info window at each
   // marker.
-  this.mapMarker.addListener('click', _ => {
+  this.openInfo = _ =>
     this.infowindow.open(map, this.mapMarker);
-  });
+
+  this.mapMarker.addListener('click', this.openInfo);
 }
 
 function AppViewModel (map) {
