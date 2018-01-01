@@ -88,3 +88,11 @@ th, td {
 }
 
 tr:nth-child(even) {background-color: #f2f2f2;}
+
+@media screen(-webkit-min-device-pixel-ratio: 2),
+	(min-resolution: 192dpi) and (device-width: 1440px)
+	and (orientation: portrait) {
+  html {
+  	width: 1440px;
+  }
+}

@@ -154,6 +154,24 @@ They are intended to work with the included css styling.</p>
             
         </li>
         
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Utility function to withdraw the list menu on clicking menu-toggle</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>$(<span class="hljs-string">"#menu-toggle"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+  e.preventDefault();
+  $(<span class="hljs-string">"#wrapper"</span>).toggleClass(<span class="hljs-string">"active"</span>);
+});</pre></div></div>
+            
+        </li>
+        
     </ul>
   </div>
 </body>

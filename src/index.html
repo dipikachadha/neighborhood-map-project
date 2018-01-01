@@ -21,7 +21,16 @@
 
     <!-- Aside menu containing Knockout.js based POI list and filter functions -->
     <aside id="POI-area">
-      <h4 id="list_header">Indian Restaurants</h4>
+
+      <h4 id="list_header">
+        Indian Restaurants
+        <a id="menu-toggle" href="#">
+          <span id ="main_icon" class="glyphicon glyphicon-align-justify"></span>
+        </a>
+      </h4>
+
+      <!-- An icon to withdraw the list if need be -->
+      <label for="list-toggle" id="list-toggle"></label>
 
       <!-- An input area for user to type and filter -->
       <input id="filter-string" type="search" placeholder="Type to search..."
