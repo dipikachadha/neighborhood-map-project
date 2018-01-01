@@ -40,7 +40,7 @@ function processFsApiResponse (context, response) {
   }
 
   context.infowindow = new google.maps.InfoWindow({
-    content: `<div>
+    content: `<div class="api_results">
     <h4>FourSquare Results</h4>
     <table id="producttable">
       <tbody>
@@ -56,6 +56,10 @@ function processFsApiResponse (context, response) {
     </table>
     </div>`
   });
+
+  // google.maps.event.addDomListener(window, 'resize', function() {
+  //         context.infowindow.close();
+  //       });
     // debugger;
 }
 
