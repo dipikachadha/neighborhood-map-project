@@ -1,47 +1,36 @@
-* {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-o-box-sizing: border-box;
-	box-sizing: border-box;
-	/* adds animation for all transitions */
-	-webkit-transition: .25s ease-in-out;
-	-moz-transition: .25s ease-in-out;
-	-o-transition: .25s ease-in-out;
-	transition: .25s ease-in-out;
-	margin: 0;
-	padding: 0;
-	-webkit-text-size-adjust: none;
-}
-html, body { height: 100%; }
+/* We are already using material design css. We now need to
+ * put things where we want to override the settings. */
 
+html, body {
+	height: 100%;
+}
+
+/* A map styling is essential for it to display */
 #map {
   height: 100%;
-  top: 10px;
+	// Map is the bottom-most layer of our design
+	z-index: 0;
 }
 
+/* One prominent place is aside vs map -- materialize
+ * gives the entire screen estate to aside. */
+/**********************/
+/* Aside menu styling */
+/**********************/
 aside {
-    margin-left: 0px;
-    overflow-y: hidden;
-    background: #000;
-    position: fixed;
-    height: 100%;
-    z-index: 10000;
-    transition: all .4s ease 0s;
-    font-size: 18px;
-    color: #fff;
+	position: absolute;
+  background: #000;
+  z-index: 10;
+  font-size: 18px;
+  color: #fff;
 
+	// Make a flex box as per filtered list
+	display: flex;
+	flex-direction: column;
 }
 
-aside ul li .hover {
-  text-emphasis: bold;
-}
-
-.h1 {
-  width: 100%;
-  position: fixed;
-  left: 0px;
-  background: #efefef;
-  padding: 10px 10px 10px 50px;
-  font-size: 30px;
-  line-height: 30px;
+aside #list_header {
+	cursor: move;
+	background-color: #2196F3;
+	padding: 5px;
 }
