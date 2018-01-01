@@ -1,3 +1,6 @@
+// Enable strict mode JS
+"use strict";
+
 // This script contains methods pertaining to third party API
 // usage, such as FourSquare API.
 const apiKeys = {
@@ -17,11 +20,9 @@ function getFourSquareData (POIObj) {
   let fsApiData = {state: 'untouched'};
   fetch(fsApiUrl)
     .then(response => response.json())
-    .then(response => {
-      fsApiData = response;
-    })
-    .catch(err => console.log(err));
-
+    .then(processfsApiResponse)
+    .catch(err => Error(err));
+    // debugger;
   // Add an Info Box related to each element. This will eventually
   // hold data collected from the APIs.
   return `<div>
@@ -31,8 +32,9 @@ function getFourSquareData (POIObj) {
 }
 
 // Function to handle FourSquare API response.
-function getApiResponse(response) {
-
+function processfsApiResponse (response) {
+  // Question -- why is fsApiData not visible in this scope?
+  debugger;
 }
 
 // Function to get search results from FourSquare API.

@@ -1,6 +1,6 @@
 myPOIs || alert('Points of interest could not be loaded!');
 myMapStyles || alert('Map Styling could not be loaded!');
-
+"use strict";
 // We make a POIObject out of all POI (Point of Interest) data. This
 // object should contain the POI's KO properties and the associated
 // marker in the maps.
