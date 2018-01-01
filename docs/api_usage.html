@@ -51,7 +51,7 @@ usage, such as FourSquare API.</p>
   fetch(<span class="hljs-keyword">this</span>.fsApiUrl)
     .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
     .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
-      that.fsApiData = response;
+      fsApiData = response;
     })
     .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(err));</pre></div></div>
             
@@ -73,9 +73,39 @@ hold data collected from the APIs.</p>
     &lt;h3&gt;FourSquare Results&lt;/h3&gt;
     <span class="hljs-subst">${<span class="hljs-built_in">JSON</span>.stringify(that.fsApiData)}</span>
     &lt;/div&gt;`</span>;
-}
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Function to handle FourSquare API response.</p>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFourSquareResults</span> (<span class="hljs-params">area=<span class="hljs-string">'cary,nc'</span></span>) </span>{
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getApiResponse</span>(<span class="hljs-params">response</span>) </span>{
+  
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Function to get search results from FourSquare API.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFourSquareResults</span> (<span class="hljs-params">area=<span class="hljs-string">'cary,nc'</span></span>) </span>{
   <span class="hljs-keyword">const</span> fsApiSearchUrl = <span class="hljs-string">'https://api.foursquare.com/v2/venues/search?'</span> +
     <span class="hljs-string">'near='</span> + area + <span class="hljs-string">'&amp;client_id='</span> + apiKeys.fsApi.client_sec
     <span class="hljs-string">'&amp;client_secret='</span> + apiKeys.fsApi.client_id +

@@ -19,7 +19,7 @@ function getFourSquareData (POIObj) {
   fetch(this.fsApiUrl)
     .then(response => response.json())
     .then(response => {
-      that.fsApiData = response;
+      fsApiData = response;
     })
     .catch(err => console.log(err));
 
@@ -31,6 +31,12 @@ function getFourSquareData (POIObj) {
     </div>`;
 }
 
+// Function to handle FourSquare API response.
+function getApiResponse(response) {
+  
+}
+
+// Function to get search results from FourSquare API.
 function getFourSquareResults (area='cary,nc') {
   const fsApiSearchUrl = 'https://api.foursquare.com/v2/venues/search?' +
     'near=' + area + '&client_id=' + apiKeys.fsApi.client_sec
