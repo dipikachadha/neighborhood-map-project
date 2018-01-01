@@ -29,10 +29,31 @@ function getFourSquareData (POIObj) {
 
 // Function to handle FourSquare API response.
 function processFsApiResponse (context, response) {
+  // response.response.venues = response.response.venues.length == 1;
+  let venue_name = 'Not Available!', venue_address = 'Not Available!';
+  try {
+    venue_name = response.response.venues[0].name;
+    venue_address =
+      response.response.venues[0].location.formattedAddress.join('\n')
+  } finally {
+    // That's fine...
+  }
+
   context.infowindow = new google.maps.InfoWindow({
     content: `<div>
-    <h3>FourSquare Results</h3>
-    ${JSON.stringify(response)}
+    <h4>FourSquare Results</h4>
+    <table id="producttable">
+      <tbody>
+        <tr>
+          <td>Name</td>
+          <td>${venue_name}</td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td>${venue_address}</td>
+        </tr>
+      </tbody>
+    </table>
     </div>`
   });
     // debugger;

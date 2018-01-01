@@ -19,12 +19,6 @@ function POIObject (POI, map) {
   });
   setMarkerAnimations(this.mapMarker);
 
-  // The infoBox creation is done within the fetch API. They would
-  // not reflect here since values are being passed by value, not reference.
-  // this.infowindow = new google.maps.InfoWindow({
-  //   content: "No content received yet!"
-  // });
-  //
   // Create an onclick event to open the info window at each
   // marker.
   this.mapMarker.addListener('click', _ => {
