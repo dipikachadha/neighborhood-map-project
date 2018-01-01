@@ -17,8 +17,20 @@ function POIObject (POI, map) {
     animation: google.maps.Animation.DROP,
     map: map
   });
-
   setMarkerAnimations(this.mapMarker);
+
+  // Add an Info Box related to each element. This will eventually
+  // hold data collected from the APIs.
+  this.infoContent = '<div data-lorem="2p">blah blah</div>';
+  this.infowindow = new google.maps.InfoWindow({
+    content: that.infoContent
+  });
+
+  // Create an onclick event to open the info window at each
+  // marker.
+  this.mapMarker.addListener('click', _ => {
+    this.infowindow.open(map, this.mapMarker);
+  });
 }
 
 function AppViewModel (map) {
