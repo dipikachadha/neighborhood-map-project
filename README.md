@@ -9,11 +9,9 @@ Clone the project:
 git clone https://github.com/dipikachadha/neighborhood-map-project.git
 ```
 
-Navigate to the folder and open `dist/index.html`. The app should load a map of Cary, NC showing Indian eateries.
-
+Navigate to the folder and open `dist/index.html`. The app should load a map of Cary, NC showing Indian eateries. It also loads a clickable list view of the venues. The view can be dragged around using the mouse.
 
 You can filter the list by typing into the search bar.
-
 
 An information window containing FourSquare results pops up when a location is clicked on the map or the list display.
 
@@ -41,12 +39,9 @@ A linting task is included in `gulpfile.js`, but the code does not yet steer cle
 gulp lint
 ```
 
-# Features
-- Functionality and features
-
 # Future Application
 [ ] Develop project to Udacity provided Rubric.
 [ ] Pull points of interest from API instead of keeping a local copy.
 
 # Attributions
-- Attributions to google, foursquare
+Maps are pulled via Google API. Venue data is pulled from FourSquare.
