@@ -31,10 +31,7 @@ function setMarkerAnimations (marker) {
 
   // bounce on click
   marker.addListener('click', toggleBounce);
-  // Create an onclick event to open the large infowindow at each marker.
-  // marker.addListener('click', function() {
-  //   populateInfoWindow(this, largeInfowindow);
-  // });
+
   // Two event listeners - one for mouseover, one for mouseout,
   // to change the colors back and forth.
   marker.addListener('mouseover', function() {

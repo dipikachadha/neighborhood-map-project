@@ -1,11 +1,11 @@
 myPOIs || alert('Points of interest could not be loaded!');
 myMapStyles || alert('Map Styling could not be loaded!');
-
+"use strict";
 // We make a POIObject out of all POI (Point of Interest) data. This
 // object should contain the POI's KO properties and the associated
 // marker in the maps.
 function POIObject (POI, map) {
-  let that = this; // save context
+  const that = this; // save context
 
   this.location = ko.observable(POI.location);
   this.address = ko.observable(POI.address);
@@ -17,8 +17,14 @@ function POIObject (POI, map) {
     animation: google.maps.Animation.DROP,
     map: map
   });
-
   setMarkerAnimations(this.mapMarker);
+
+  // Create an onclick event to open the info window at each
+  // marker.
+  this.openInfo = _ =>
+    this.infowindow.open(map, this.mapMarker);
+
+  this.mapMarker.addListener('click', this.openInfo);
 }
 
 function AppViewModel (map) {
@@ -28,6 +34,8 @@ function AppViewModel (map) {
   // help filter as well using KO.
   this.myPOIObjList = ko.observableArray(
     myPOIs.map(POI => new POIObject(POI, map)));
+
+  this.myPOIObjList().map(POI => getFourSquareData(POI));
 
   this.currentPOI = ko.observable({});
 
@@ -71,5 +79,8 @@ function AppViewModel (map) {
 function init () {
   const map = initMap();
 
-  ko.applyBindings(new AppViewModel(map));
+  // Save the context for the viewModel, in case we need to use the
+  // properties in some other function. Thereafter, apply KO bindings.
+  const viewModel = new AppViewModel(map);
+  ko.applyBindings(viewModel);
 }
