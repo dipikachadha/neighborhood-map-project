@@ -40,8 +40,9 @@ gulp lint
 ```
 
 # Future Application
-[ ] Develop project to Udacity provided Rubric.
-[ ] Pull points of interest from API instead of keeping a local copy.
+- Develop project to Udacity provided Rubric.
+- Pull points of interest from API instead of keeping a local copy.
+- Add custom map styling to map display.
 
 # Attributions
 Maps are pulled via Google API. Venue data is pulled from FourSquare.
