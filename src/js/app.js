@@ -5,7 +5,7 @@ myMapStyles || alert('Map Styling could not be loaded!');
 // object should contain the POI's KO properties and the associated
 // marker in the maps.
 function POIObject (POI, map) {
-  let that = this; // save context
+  const that = this; // save context
 
   this.location = ko.observable(POI.location);
   this.address = ko.observable(POI.address);
