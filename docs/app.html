@@ -50,7 +50,7 @@ marker in the maps.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">POIObject</span> (<span class="hljs-params">POI, map</span>) </span>{
-  <span class="hljs-keyword">let</span> that = <span class="hljs-keyword">this</span>; <span class="hljs-comment">// save context</span>
+  <span class="hljs-keyword">const</span> that = <span class="hljs-keyword">this</span>; <span class="hljs-comment">// save context</span>
 
   <span class="hljs-keyword">this</span>.location = ko.observable(POI.location);
   <span class="hljs-keyword">this</span>.address = ko.observable(POI.address);

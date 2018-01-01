@@ -77,5 +77,5 @@ gulp.task('watch', function() {
 
 // The default task (called when you run `gulp` from cli)
 gulp.task('default',
-  ['watch', 'jshint', 'create-js-docs', 'create-html-docs',
+  ['watch', 'create-js-docs', 'create-html-docs',
   'compress-js', 'compress-css', 'compress-html']);
