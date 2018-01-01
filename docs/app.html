@@ -62,12 +62,7 @@ marker in the maps.</p>
     <span class="hljs-attr">animation</span>: google.maps.Animation.DROP,
     <span class="hljs-attr">map</span>: map
   });
-  setMarkerAnimations(<span class="hljs-keyword">this</span>.mapMarker);
-
-  <span class="hljs-keyword">this</span>.infoContent = getFourSquareData(POI);
-  <span class="hljs-keyword">this</span>.infowindow = <span class="hljs-keyword">new</span> google.maps.InfoWindow({
-    <span class="hljs-attr">content</span>: that.infoContent
-  });</pre></div></div>
+  setMarkerAnimations(<span class="hljs-keyword">this</span>.mapMarker);</pre></div></div>
             
         </li>
         
@@ -78,7 +73,12 @@ marker in the maps.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>Create an onclick event to open the info window at each
+              <p>The infoBox creation is done within the fetch API. They would
+not reflect here since values are being passed by value, not reference.
+this.infowindow = new google.maps.InfoWindow({
+  content: “No content received yet!”
+});</p>
+<p>Create an onclick event to open the info window at each
 marker.</p>
 
             </div>
@@ -107,6 +107,8 @@ help filter as well using KO.</p>
             
             <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">this</span>.myPOIObjList = ko.observableArray(
     myPOIs.map(<span class="hljs-function"><span class="hljs-params">POI</span> =&gt;</span> <span class="hljs-keyword">new</span> POIObject(POI, map)));
+
+  <span class="hljs-keyword">this</span>.myPOIObjList().map(<span class="hljs-function"><span class="hljs-params">POI</span> =&gt;</span> getFourSquareData(POI));
 
   <span class="hljs-keyword">this</span>.currentPOI = ko.observable({});
 
@@ -197,9 +199,24 @@ a bad search with no matches.</p>
 }
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span> (<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">const</span> map = initMap();
+  <span class="hljs-keyword">const</span> map = initMap();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Save the context for the viewModel, in case we need to use the
+properties in some other function. Thereafter, apply KO bindings.</p>
 
-  ko.applyBindings(<span class="hljs-keyword">new</span> AppViewModel(map));
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">const</span> viewModel = <span class="hljs-keyword">new</span> AppViewModel(map);
+  ko.applyBindings(viewModel);
 }</pre></div></div>
             
         </li>

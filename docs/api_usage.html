@@ -56,16 +56,20 @@ usage, such as FourSquare API.</p>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFourSquareData</span> (<span class="hljs-params">POIObj</span>) </span>{
   <span class="hljs-keyword">const</span> fsApiUrl = <span class="hljs-string">'https://api.foursquare.com/v2/venues/search?ll='</span>+
-    POIObj.location.lat + <span class="hljs-string">','</span> + POIObj.location.lng +
-    <span class="hljs-string">'&amp;client_id='</span> + <span class="hljs-string">'N3GKXU5CXFUWGHBGXBMSEOHZCKCXEW5CPFBKLQ5OIWRYDNTA'</span> +
-    <span class="hljs-string">'&amp;client_secret='</span> + <span class="hljs-string">'N3GQ2ZBGXWLE1ZWXIB3SN44Z3HNO2KOKRUGJ1DYAZMEUTDX0'</span> +
-    <span class="hljs-string">'&amp;v=20170801'</span> + <span class="hljs-string">'&amp;query='</span> + POIObj.title.split(<span class="hljs-string">' '</span>)[<span class="hljs-number">0</span>] + <span class="hljs-string">'&amp;limit=1'</span>;
+    POIObj.location().lat + <span class="hljs-string">','</span> + POIObj.location().lng +
+    <span class="hljs-string">'&amp;client_id='</span> + apiKeys.fsApi.client_sec +
+    <span class="hljs-string">'&amp;client_secret='</span> + apiKeys.fsApi.client_id +
+    <span class="hljs-string">'&amp;v=20170801'</span> + <span class="hljs-string">'&amp;query='</span> + POIObj.title().split(<span class="hljs-string">' '</span>)[<span class="hljs-number">0</span>] + <span class="hljs-string">'&amp;limit=1'</span>;
 
   <span class="hljs-keyword">let</span> fsApiData = {<span class="hljs-attr">state</span>: <span class="hljs-string">'untouched'</span>};
+  <span class="hljs-keyword">let</span> processFsApiResponseInContext =
+    _.partial(processFsApiResponse, POIObj);
+
   fetch(fsApiUrl)
     .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
-    .then(processfsApiResponse)
-    .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">Error</span>(err));</pre></div></div>
+    .then(processFsApiResponseInContext)
+    .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">Error</span>(err));
+}</pre></div></div>
             
         </li>
         
@@ -76,17 +80,17 @@ usage, such as FourSquare API.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>debugger;
-Add an Info Box related to each element. This will eventually
-hold data collected from the APIs.</p>
+              <p>Function to handle FourSquare API response.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;div&gt;
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processFsApiResponse</span> (<span class="hljs-params">context, response</span>) </span>{
+  context.infowindow = <span class="hljs-keyword">new</span> google.maps.InfoWindow({
+    <span class="hljs-attr">content</span>: <span class="hljs-string">`&lt;div&gt;
     &lt;h3&gt;FourSquare Results&lt;/h3&gt;
-    <span class="hljs-subst">${<span class="hljs-built_in">JSON</span>.stringify(fsApiData)}</span>
-    &lt;/div&gt;`</span>;
-}</pre></div></div>
+    <span class="hljs-subst">${<span class="hljs-built_in">JSON</span>.stringify(response)}</span>
+    &lt;/div&gt;`</span>
+  });</pre></div></div>
             
         </li>
         
@@ -97,11 +101,11 @@ hold data collected from the APIs.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Function to handle FourSquare API response.</p>
+              <p>debugger;</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processfsApiResponse</span> (<span class="hljs-params">response</span>) </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>}</pre></div></div>
             
         </li>
         
@@ -111,22 +115,6 @@ hold data collected from the APIs.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
-              </div>
-              <p>Question – why is fsApiData not visible in this scope?</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">debugger</span>;
-}</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-6">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>Function to get search results from FourSquare API.</p>
 

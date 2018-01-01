@@ -12,29 +12,30 @@ const apiKeys = {
 
 function getFourSquareData (POIObj) {
   const fsApiUrl = 'https://api.foursquare.com/v2/venues/search?ll='+
-    POIObj.location.lat + ',' + POIObj.location.lng +
-    '&client_id=' + 'N3GKXU5CXFUWGHBGXBMSEOHZCKCXEW5CPFBKLQ5OIWRYDNTA' +
-    '&client_secret=' + 'N3GQ2ZBGXWLE1ZWXIB3SN44Z3HNO2KOKRUGJ1DYAZMEUTDX0' +
-    '&v=20170801' + '&query=' + POIObj.title.split(' ')[0] + '&limit=1';
+    POIObj.location().lat + ',' + POIObj.location().lng +
+    '&client_id=' + apiKeys.fsApi.client_sec +
+    '&client_secret=' + apiKeys.fsApi.client_id +
+    '&v=20170801' + '&query=' + POIObj.title().split(' ')[0] + '&limit=1';
 
   let fsApiData = {state: 'untouched'};
+  let processFsApiResponseInContext =
+    _.partial(processFsApiResponse, POIObj);
+
   fetch(fsApiUrl)
     .then(response => response.json())
-    .then(processfsApiResponse)
+    .then(processFsApiResponseInContext)
     .catch(err => Error(err));
-    // debugger;
-  // Add an Info Box related to each element. This will eventually
-  // hold data collected from the APIs.
-  return `<div>
-    <h3>FourSquare Results</h3>
-    ${JSON.stringify(fsApiData)}
-    </div>`;
 }
 
 // Function to handle FourSquare API response.
-function processfsApiResponse (response) {
-  // Question -- why is fsApiData not visible in this scope?
-  debugger;
+function processFsApiResponse (context, response) {
+  context.infowindow = new google.maps.InfoWindow({
+    content: `<div>
+    <h3>FourSquare Results</h3>
+    ${JSON.stringify(response)}
+    </div>`
+  });
+    // debugger;
 }
 
 // Function to get search results from FourSquare API.

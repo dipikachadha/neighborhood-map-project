@@ -19,11 +19,12 @@ function POIObject (POI, map) {
   });
   setMarkerAnimations(this.mapMarker);
 
-  this.infoContent = getFourSquareData(POI);
-  this.infowindow = new google.maps.InfoWindow({
-    content: that.infoContent
-  });
-
+  // The infoBox creation is done within the fetch API. They would
+  // not reflect here since values are being passed by value, not reference.
+  // this.infowindow = new google.maps.InfoWindow({
+  //   content: "No content received yet!"
+  // });
+  //
   // Create an onclick event to open the info window at each
   // marker.
   this.mapMarker.addListener('click', _ => {
@@ -38,6 +39,8 @@ function AppViewModel (map) {
   // help filter as well using KO.
   this.myPOIObjList = ko.observableArray(
     myPOIs.map(POI => new POIObject(POI, map)));
+
+  this.myPOIObjList().map(POI => getFourSquareData(POI));
 
   this.currentPOI = ko.observable({});
 
@@ -81,5 +84,8 @@ function AppViewModel (map) {
 function init () {
   const map = initMap();
 
-  ko.applyBindings(new AppViewModel(map));
+  // Save the context for the viewModel, in case we need to use the
+  // properties in some other function. Thereafter, apply KO bindings.
+  const viewModel = new AppViewModel(map);
+  ko.applyBindings(viewModel);
 }
