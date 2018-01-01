@@ -43,3 +43,17 @@ aside li {
 aside #filter-string {
 	margin-left: 5px;
 }
+
+/* Fix footer images and attributions */
+footer p {
+	margin: 0;
+	display: flex;
+	flex-direction: row;
+	max-width: 60%;
+}
+
+footer #foursquare_logo {
+	float: right;
+	display: in-line;
+	max-width: 40%
+}
