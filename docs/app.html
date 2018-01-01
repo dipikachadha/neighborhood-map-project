@@ -31,7 +31,8 @@
             </div>
             
             <div class="content"><div class='highlight'><pre>myPOIs || alert(<span class="hljs-string">'Points of interest could not be loaded!'</span>);
-myMapStyles || alert(<span class="hljs-string">'Map Styling could not be loaded!'</span>);</pre></div></div>
+myMapStyles || alert(<span class="hljs-string">'Map Styling could not be loaded!'</span>);
+<span class="hljs-meta">"use strict"</span>;</pre></div></div>
             
         </li>
         
@@ -72,15 +73,19 @@ marker in the maps.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>Add an Info Box related to each element. This will eventually
-hold data collected from the APIs.</p>
+              <p>Create an onclick event to open the info window at each
+marker.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">this</span>.infoContent = <span class="hljs-string">'&lt;div&gt;blah blah&lt;/div&gt;'</span>;
-  <span class="hljs-keyword">this</span>.infowindow = <span class="hljs-keyword">new</span> google.maps.InfoWindow({
-    <span class="hljs-attr">content</span>: that.infoContent
-  });</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">this</span>.openInfo = <span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span>
+    <span class="hljs-keyword">this</span>.infowindow.open(map, <span class="hljs-keyword">this</span>.mapMarker);
+
+  <span class="hljs-keyword">this</span>.mapMarker.addListener(<span class="hljs-string">'click'</span>, <span class="hljs-keyword">this</span>.openInfo);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AppViewModel</span> (<span class="hljs-params">map</span>) </span>{
+  <span class="hljs-keyword">const</span> that = <span class="hljs-keyword">this</span>; <span class="hljs-comment">// save the context for referring later on if need be.</span></pre></div></div>
             
         </li>
         
@@ -91,28 +96,6 @@ hold data collected from the APIs.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Create an onclick event to open the info window at each
-marker.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">this</span>.mapMarker.addListener(<span class="hljs-string">'click'</span>, _ =&gt; {
-    <span class="hljs-keyword">this</span>.infowindow.open(map, <span class="hljs-keyword">this</span>.mapMarker);
-  });
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AppViewModel</span> (<span class="hljs-params">map</span>) </span>{
-  <span class="hljs-keyword">const</span> that = <span class="hljs-keyword">this</span>; <span class="hljs-comment">// save the context for referring later on if need be.</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-5">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
-              </div>
               <p>We need a KO observable array of POIs. This helps HTML view bindings and
 help filter as well using KO.</p>
 
@@ -120,6 +103,8 @@ help filter as well using KO.</p>
             
             <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">this</span>.myPOIObjList = ko.observableArray(
     myPOIs.map(<span class="hljs-function"><span class="hljs-params">POI</span> =&gt;</span> <span class="hljs-keyword">new</span> POIObject(POI, map)));
+
+  <span class="hljs-keyword">this</span>.myPOIObjList().map(<span class="hljs-function"><span class="hljs-params">POI</span> =&gt;</span> getFourSquareData(POI));
 
   <span class="hljs-keyword">this</span>.currentPOI = ko.observable({});
 
@@ -132,11 +117,11 @@ help filter as well using KO.</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-5">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>The filter string is input by the user via the filter-string
 input in HTML. It needs to be converted to a regex for matching
@@ -149,11 +134,11 @@ against the full list later on.</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>Do the regex conversion here, and give a graceful alert if the
 input string is not a valid regex. It would otherwise give a hairy
@@ -173,11 +158,11 @@ TypeError or something likewise in the console.</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>Here we need to filter the myPOIObjList as per the user input above.
 A new ko.computed needs to be used instead of modifying the original
@@ -191,11 +176,11 @@ a bad search with no matches.</p>
         </li>
         
         
-        <li id="section-9">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>Filter the list first</p>
 
@@ -210,9 +195,24 @@ a bad search with no matches.</p>
 }
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span> (<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">const</span> map = initMap();
+  <span class="hljs-keyword">const</span> map = initMap();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Save the context for the viewModel, in case we need to use the
+properties in some other function. Thereafter, apply KO bindings.</p>
 
-  ko.applyBindings(<span class="hljs-keyword">new</span> AppViewModel(map));
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">const</span> viewModel = <span class="hljs-keyword">new</span> AppViewModel(map);
+  ko.applyBindings(viewModel);
 }</pre></div></div>
             
         </li>

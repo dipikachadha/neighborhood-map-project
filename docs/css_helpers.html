@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>css_helpers.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>css_helpers.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>The file contains helpers functions for styling the app.
+They are intended to work with the included css styling.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Draggable div function from W3School
+<a href="https://www.w3schools.com/howto/howto_js_draggable.asp">https://www.w3schools.com/howto/howto_js_draggable.asp</a></p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Make the POI-area element draggagle:</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>dragElement(<span class="hljs-built_in">document</span>.getElementById((<span class="hljs-string">"POI-area"</span>)));
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dragElement</span>(<span class="hljs-params">elmnt</span>) </span>{
+  <span class="hljs-keyword">var</span> pos1 = <span class="hljs-number">0</span>, pos2 = <span class="hljs-number">0</span>, pos3 = <span class="hljs-number">0</span>, pos4 = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.getElementById(elmnt.id + <span class="hljs-string">"header"</span>)) {
+    <span class="hljs-comment">/* if present, the header is where you move the DIV from:*/</span>
+    <span class="hljs-built_in">document</span>.getElementById(elmnt.id + <span class="hljs-string">"header"</span>).onmousedown = dragMouseDown;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">/* otherwise, move the DIV from anywhere inside the DIV:*/</span>
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dragMouseDown</span>(<span class="hljs-params">e</span>) </span>{
+    e = e || <span class="hljs-built_in">window</span>.event;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>get the mouse cursor position at startup:</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    pos3 = e.clientX;
+    pos4 = e.clientY;
+    <span class="hljs-built_in">document</span>.onmouseup = closeDragElement;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>call a function whenever the cursor moves:</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-built_in">document</span>.onmousemove = elementDrag;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">elementDrag</span>(<span class="hljs-params">e</span>) </span>{
+    e = e || <span class="hljs-built_in">window</span>.event;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>calculate the new cursor position:</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>set the element’s new position:</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    elmnt.style.top = (elmnt.offsetTop - pos2) + <span class="hljs-string">"px"</span>;
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + <span class="hljs-string">"px"</span>;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">closeDragElement</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">/* stop moving when mouse button is released:*/</span>
+    <span class="hljs-built_in">document</span>.onmouseup = <span class="hljs-literal">null</span>;
+    <span class="hljs-built_in">document</span>.onmousemove = <span class="hljs-literal">null</span>;
+  }
+}</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
