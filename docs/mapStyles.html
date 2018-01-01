@@ -44,45 +44,70 @@
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="hljs-keyword">const</span> myMapStyles = [
-    {
-        <span class="hljs-attr">featureType</span>: <span class="hljs-string">'water'</span>,
-        <span class="hljs-attr">stylers</span>: [{<span class="hljs-attr">color</span>: <span class="hljs-string">'#19a0d8'</span>}]
-    },{
-        <span class="hljs-attr">featureType</span>: <span class="hljs-string">'administrative'</span>,
-        <span class="hljs-attr">elementType</span>: <span class="hljs-string">'labels.text.stroke'</span>,
-        <span class="hljs-attr">stylers</span>: [{<span class="hljs-attr">color</span>: <span class="hljs-string">'#ffffff'</span>}, {<span class="hljs-attr">weight</span>: <span class="hljs-number">6</span>}]
-    },{
-        <span class="hljs-attr">featureType</span>: <span class="hljs-string">'administrative'</span>,
-        <span class="hljs-attr">elementType</span>: <span class="hljs-string">'labels.text.fill'</span>,
-        <span class="hljs-attr">stylers</span>: [{<span class="hljs-attr">color</span>: <span class="hljs-string">'#e85113'</span>}]
-    },{
-        <span class="hljs-attr">featureType</span>: <span class="hljs-string">'road.highway'</span>,
-        <span class="hljs-attr">elementType</span>: <span class="hljs-string">'geometry.stroke'</span>,
-        <span class="hljs-attr">stylers</span>: [{<span class="hljs-attr">color</span>: <span class="hljs-string">'#efe9e4'</span>}, {<span class="hljs-attr">lightness</span>: <span class="hljs-number">-40</span>}]
-    },{
-        <span class="hljs-attr">featureType</span>: <span class="hljs-string">'transit.station'</span>,
-        <span class="hljs-attr">stylers</span>: [{<span class="hljs-attr">weight</span>: <span class="hljs-number">9</span>}, {<span class="hljs-attr">hue</span>: <span class="hljs-string">'#e85113'</span>}]
-    },{
-        <span class="hljs-attr">featureType</span>: <span class="hljs-string">'road.highway'</span>,
-        <span class="hljs-attr">elementType</span>: <span class="hljs-string">'labels.icon'</span>,
-        <span class="hljs-attr">stylers</span>: [{<span class="hljs-attr">visibility</span>: <span class="hljs-string">'off'</span>}]
-    },{
-        <span class="hljs-attr">featureType</span>: <span class="hljs-string">'water'</span>,
-        <span class="hljs-attr">elementType</span>: <span class="hljs-string">'labels.text.stroke'</span>,
-        <span class="hljs-attr">stylers</span>: [{<span class="hljs-attr">lightness</span>: <span class="hljs-number">100</span>}]
-    },{
-        <span class="hljs-attr">featureType</span>: <span class="hljs-string">'water'</span>,
-        <span class="hljs-attr">elementType</span>: <span class="hljs-string">'labels.text.fill'</span>,
-        <span class="hljs-attr">stylers</span>: [{<span class="hljs-attr">lightness</span>: <span class="hljs-number">-100</span>}]
-    },{
-        <span class="hljs-attr">featureType</span>: <span class="hljs-string">'poi'</span>,
-        <span class="hljs-attr">elementType</span>: <span class="hljs-string">'geometry'</span>,
-        <span class="hljs-attr">stylers</span>: [{<span class="hljs-attr">visibility</span>: <span class="hljs-string">'on'</span>}, {<span class="hljs-attr">color</span>: <span class="hljs-string">'#f0e4d3'</span>}]
-    },{
-        <span class="hljs-attr">featureType</span>: <span class="hljs-string">'road.highway'</span>,
-        <span class="hljs-attr">elementType</span>: <span class="hljs-string">'geometry.fill'</span>,
-        <span class="hljs-attr">stylers</span>: [{<span class="hljs-attr">color</span>: <span class="hljs-string">'#efe9e4'</span>}, {<span class="hljs-attr">lightness</span>: <span class="hljs-number">-25</span>}]
-    }
+  {
+    <span class="hljs-attr">featureType</span>: <span class="hljs-string">'water'</span>,
+    <span class="hljs-attr">stylers</span>: [
+      { <span class="hljs-attr">color</span>: <span class="hljs-string">'#19a0d8'</span> }
+    ]
+  },{
+    <span class="hljs-attr">featureType</span>: <span class="hljs-string">'administrative'</span>,
+    <span class="hljs-attr">elementType</span>: <span class="hljs-string">'labels.text.stroke'</span>,
+    <span class="hljs-attr">stylers</span>: [
+      { <span class="hljs-attr">color</span>: <span class="hljs-string">'#ffffff'</span> },
+      { <span class="hljs-attr">weight</span>: <span class="hljs-number">6</span> }
+    ]
+  },{
+    <span class="hljs-attr">featureType</span>: <span class="hljs-string">'administrative'</span>,
+    <span class="hljs-attr">elementType</span>: <span class="hljs-string">'labels.text.fill'</span>,
+    <span class="hljs-attr">stylers</span>: [
+      { <span class="hljs-attr">color</span>: <span class="hljs-string">'#e85113'</span> }
+    ]
+  },{
+    <span class="hljs-attr">featureType</span>: <span class="hljs-string">'road.highway'</span>,
+    <span class="hljs-attr">elementType</span>: <span class="hljs-string">'geometry.stroke'</span>,
+    <span class="hljs-attr">stylers</span>: [
+      { <span class="hljs-attr">color</span>: <span class="hljs-string">'#efe9e4'</span> },
+      { <span class="hljs-attr">lightness</span>: <span class="hljs-number">-40</span> }
+    ]
+  },{
+    <span class="hljs-attr">featureType</span>: <span class="hljs-string">'transit.station'</span>,
+    <span class="hljs-attr">stylers</span>: [
+      { <span class="hljs-attr">weight</span>: <span class="hljs-number">9</span> },
+      { <span class="hljs-attr">hue</span>: <span class="hljs-string">'#e85113'</span> }
+    ]
+  },{
+    <span class="hljs-attr">featureType</span>: <span class="hljs-string">'road.highway'</span>,
+    <span class="hljs-attr">elementType</span>: <span class="hljs-string">'labels.icon'</span>,
+    <span class="hljs-attr">stylers</span>: [
+      { <span class="hljs-attr">visibility</span>: <span class="hljs-string">'off'</span> }
+    ]
+  },{
+    <span class="hljs-attr">featureType</span>: <span class="hljs-string">'water'</span>,
+    <span class="hljs-attr">elementType</span>: <span class="hljs-string">'labels.text.stroke'</span>,
+    <span class="hljs-attr">stylers</span>: [
+      { <span class="hljs-attr">lightness</span>: <span class="hljs-number">100</span> }
+    ]
+  },{
+    <span class="hljs-attr">featureType</span>: <span class="hljs-string">'water'</span>,
+    <span class="hljs-attr">elementType</span>: <span class="hljs-string">'labels.text.fill'</span>,
+    <span class="hljs-attr">stylers</span>: [
+      { <span class="hljs-attr">lightness</span>: <span class="hljs-number">-100</span> }
+    ]
+  },{
+    <span class="hljs-attr">featureType</span>: <span class="hljs-string">'poi'</span>,
+    <span class="hljs-attr">elementType</span>: <span class="hljs-string">'geometry'</span>,
+    <span class="hljs-attr">stylers</span>: [
+      { <span class="hljs-attr">visibility</span>: <span class="hljs-string">'on'</span> },
+      { <span class="hljs-attr">color</span>: <span class="hljs-string">'#f0e4d3'</span> }
+    ]
+  },{
+    <span class="hljs-attr">featureType</span>: <span class="hljs-string">'road.highway'</span>,
+    <span class="hljs-attr">elementType</span>: <span class="hljs-string">'geometry.fill'</span>,
+    <span class="hljs-attr">stylers</span>: [
+      { <span class="hljs-attr">color</span>: <span class="hljs-string">'#efe9e4'</span> },
+      { <span class="hljs-attr">lightness</span>: <span class="hljs-number">-25</span> }
+    ]
+  }
 ];</pre></div></div>
             
         </li>
