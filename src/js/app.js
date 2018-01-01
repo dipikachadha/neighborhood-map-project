@@ -21,7 +21,7 @@ function POIObject (POI, map) {
 
   // Add an Info Box related to each element. This will eventually
   // hold data collected from the APIs.
-  this.infoContent = '<div data-lorem="2p">blah blah</div>';
+  this.infoContent = '<div>blah blah</div>';
   this.infowindow = new google.maps.InfoWindow({
     content: that.infoContent
   });
