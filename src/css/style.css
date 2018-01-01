@@ -23,6 +23,7 @@ aside {
   z-index: 10;
   font-size: 18px;
   color: #fff;
+	cursor: move;
 
 	// Make a flex box as per filtered list
 	display: flex;
@@ -30,7 +31,15 @@ aside {
 }
 
 aside #list_header {
-	cursor: move;
 	background-color: #2196F3;
 	padding: 5px;
+}
+
+aside li {
+	cursor: pointer;
+	padding: 5px;
+}
+
+aside #filter-string {
+	margin-left: 5px;
 }
