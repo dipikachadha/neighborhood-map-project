@@ -54,9 +54,10 @@ gulp.task('compress-html', function() {
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
-  gulp.watch(paths.origJS, ['compress-js']);
+  gulp.watch(paths.origJS, ['compress-js', 'create-js-docs']);
   gulp.watch(paths.origCSS, ['compress-css']);
-  gulp.watch(paths.origHTML, ['compress-html']);
+  gulp.watch(paths.origHTML, ['compress-html',
+    'create-html-docs']);
 });
 
 // The default task (called when you run `gulp` from cli)
