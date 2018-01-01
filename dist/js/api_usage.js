@@ -1,0 +1,1 @@
+function getFourSquareData(t){t.location.lat,t.location.lng,t.title.split(" ")[0];const n=this;return fetch(this.fsApiUrl).then(t=>t.json()).then(t=>{n.fsApiData=t}).catch(t=>console.log(t)),`<div>\n    <h3>FourSquare Results</h3>\n    ${JSON.stringify(n.fsApiData)}\n    </div>`}
