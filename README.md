@@ -18,9 +18,29 @@ You can filter the list by typing into the search bar.
 An information window containing FourSquare results pops up when a location is clicked on the map or the list display.
 
 # Developer Insights
-The original source code for the project is available in `src/` folder.
+The directory structure is as follows:
+- `src` folder contains the original source code for the project.
+- `docs` folder contains the annotated source code for documentation, generated via `docco`/`gulp-docco`.
+- `dist` folder contains the distribution code for the end user. The code is minified and stripped of comments.
 
-The code dependencies are
+The code dependencies are managed as follows:
+- Libraries and frameworks are handled via `bower`. The requirements are already available via the `bower-components` folder.
+- `gulp` and dependencies are managed via `npm`. Use the following commands to install dependencies and examine the included `gulp` tasks:
+```
+# Pull all dependencies
+npm install
+
+# Examine default gulp workflow: includes docs creation, minification and watch
+gulp &
+```
+
+A linting task is included in `gulpfile.js`, but the code does not yet steer clean there.
+
+```
+# Lint via ESlint -- not yet working
+gulp lint
+```
+
 # Features
 - Functionality and features
 
