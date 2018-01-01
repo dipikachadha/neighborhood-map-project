@@ -1,5 +1,12 @@
 // This script contains methods pertaining to third party API
 // usage, such as FourSquare API.
+const apiKeys = {
+  fsApi: {
+    client_sec: 'N3GKXU5CXFUWGHBGXBMSEOHZCKCXEW5CPFBKLQ5OIWRYDNTA',
+    client_id: 'N3GQ2ZBGXWLE1ZWXIB3SN44Z3HNO2KOKRUGJ1DYAZMEUTDX0'
+  }
+};
+
 function getFourSquareData (POIObj) {
   const fsApiUrl = 'https://api.foursquare.com/v2/venues/search?ll='+
     POIObj.location.lat + ',' + POIObj.location.lng +
@@ -22,4 +29,16 @@ function getFourSquareData (POIObj) {
     <h3>FourSquare Results</h3>
     ${JSON.stringify(that.fsApiData)}
     </div>`;
+}
+
+function getFourSquareResults (area='cary,nc') {
+  const fsApiSearchUrl = 'https://api.foursquare.com/v2/venues/search?' +
+    'near=' + area + '&client_id=' + apiKeys.fsApi.client_sec
+    '&client_secret=' + apiKeys.fsApi.client_id +
+    '&v=20170801&query=park&categoryId=4bf58dd8d48988d163941735&limit=20';
+
+  let fsApiSearchResults = {'not yet searched'};
+  fetch(fsApiSearchUrl)
+    .then(response => response.json())
+    .then(response => fsApiSearchResults = getApiResponse(response))
 }

@@ -32,7 +32,14 @@ usage, such as FourSquare API.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFourSquareData</span> (<span class="hljs-params">POIObj</span>) </span>{
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">const</span> apiKeys = {
+  <span class="hljs-attr">fsApi</span>: {
+    <span class="hljs-attr">client_sec</span>: <span class="hljs-string">'N3GKXU5CXFUWGHBGXBMSEOHZCKCXEW5CPFBKLQ5OIWRYDNTA'</span>,
+    <span class="hljs-attr">client_id</span>: <span class="hljs-string">'N3GQ2ZBGXWLE1ZWXIB3SN44Z3HNO2KOKRUGJ1DYAZMEUTDX0'</span>
+  }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFourSquareData</span> (<span class="hljs-params">POIObj</span>) </span>{
   <span class="hljs-keyword">const</span> fsApiUrl = <span class="hljs-string">'https://api.foursquare.com/v2/venues/search?ll='</span>+
     POIObj.location.lat + <span class="hljs-string">','</span> + POIObj.location.lng +
     <span class="hljs-string">'&amp;client_id='</span> + <span class="hljs-string">'N3GKXU5CXFUWGHBGXBMSEOHZCKCXEW5CPFBKLQ5OIWRYDNTA'</span> +
@@ -66,6 +73,18 @@ hold data collected from the APIs.</p>
     &lt;h3&gt;FourSquare Results&lt;/h3&gt;
     <span class="hljs-subst">${<span class="hljs-built_in">JSON</span>.stringify(that.fsApiData)}</span>
     &lt;/div&gt;`</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFourSquareResults</span> (<span class="hljs-params">area=<span class="hljs-string">'cary,nc'</span></span>) </span>{
+  <span class="hljs-keyword">const</span> fsApiSearchUrl = <span class="hljs-string">'https://api.foursquare.com/v2/venues/search?'</span> +
+    <span class="hljs-string">'near='</span> + area + <span class="hljs-string">'&amp;client_id='</span> + apiKeys.fsApi.client_sec
+    <span class="hljs-string">'&amp;client_secret='</span> + apiKeys.fsApi.client_id +
+    <span class="hljs-string">'&amp;v=20170801&amp;query=park&amp;categoryId=4bf58dd8d48988d163941735&amp;limit=20'</span>;
+
+  <span class="hljs-keyword">let</span> fsApiSearchResults = {<span class="hljs-string">'not yet searched'</span>};
+  fetch(fsApiSearchUrl)
+    .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
+    .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> fsApiSearchResults = getApiResponse(response))
 }</pre></div></div>
             
         </li>
