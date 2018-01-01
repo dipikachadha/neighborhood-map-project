@@ -32,11 +32,17 @@ npm install
 gulp &
 ```
 
-A linting task is included in `gulpfile.js`, but the code does not yet steer clean there.
+## Open Issues
+The following issues are known, but are low priority as of now:
+1. A linting task is included in `gulpfile.js`, but the code does not yet steer clean there.
 
 ```
 # Lint via ESlint -- not yet working
 gulp lint
+```
+2. Material Design CSS is used via `bower`. However, the package is incomplete and issues errors as below on the console. This is a bower/materialize issue as far as I can tell...
+```
+GET file:///.../neighborhood-map-project/bower_components/materialize/dist/fonts/roboto/Roboto-Light.woff2 net::ERR_FILE_NOT_FOUND
 ```
 
 # Future Application
