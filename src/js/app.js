@@ -19,9 +19,7 @@ function POIObject (POI, map) {
   });
   setMarkerAnimations(this.mapMarker);
 
-  // Add an Info Box related to each element. This will eventually
-  // hold data collected from the APIs.
-  this.infoContent = '<div>blah blah</div>';
+  this.infoContent = getFourSquareData(POI);
   this.infowindow = new google.maps.InfoWindow({
     content: that.infoContent
   });
