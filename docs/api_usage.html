@@ -47,8 +47,7 @@ usage, such as FourSquare API.</p>
     <span class="hljs-string">'&amp;v=20170801'</span> + <span class="hljs-string">'&amp;query='</span> + POIObj.title.split(<span class="hljs-string">' '</span>)[<span class="hljs-number">0</span>] + <span class="hljs-string">'&amp;limit=1'</span>;
 
   <span class="hljs-keyword">let</span> fsApiData = {<span class="hljs-attr">state</span>: <span class="hljs-string">'untouched'</span>};
-  <span class="hljs-keyword">const</span> that = <span class="hljs-keyword">this</span>;
-  fetch(<span class="hljs-keyword">this</span>.fsApiUrl)
+  fetch(fsApiUrl)
     .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
     .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
       fsApiData = response;
@@ -71,7 +70,7 @@ hold data collected from the APIs.</p>
             
             <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;div&gt;
     &lt;h3&gt;FourSquare Results&lt;/h3&gt;
-    <span class="hljs-subst">${<span class="hljs-built_in">JSON</span>.stringify(that.fsApiData)}</span>
+    <span class="hljs-subst">${<span class="hljs-built_in">JSON</span>.stringify(fsApiData)}</span>
     &lt;/div&gt;`</span>;
 }</pre></div></div>
             
@@ -89,7 +88,7 @@ hold data collected from the APIs.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getApiResponse</span>(<span class="hljs-params">response</span>) </span>{
-  
+
 }</pre></div></div>
             
         </li>
@@ -111,7 +110,7 @@ hold data collected from the APIs.</p>
     <span class="hljs-string">'&amp;client_secret='</span> + apiKeys.fsApi.client_id +
     <span class="hljs-string">'&amp;v=20170801&amp;query=park&amp;categoryId=4bf58dd8d48988d163941735&amp;limit=20'</span>;
 
-  <span class="hljs-keyword">let</span> fsApiSearchResults = {<span class="hljs-string">'not yet searched'</span>};
+  <span class="hljs-keyword">let</span> fsApiSearchResults = {<span class="hljs-attr">state</span>: <span class="hljs-string">'not yet searched'</span>};
   fetch(fsApiSearchUrl)
     .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
     .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> fsApiSearchResults = getApiResponse(response))
