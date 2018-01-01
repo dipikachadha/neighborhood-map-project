@@ -68,7 +68,8 @@ usage, such as FourSquare API.</p>
   fetch(fsApiUrl)
     .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
     .then(processFsApiResponseInContext)
-    .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">Error</span>(err));
+    .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> alert(<span class="hljs-string">'FourSquare data could not be loaded!'</span> +
+      err + <span class="hljs-string">'\n\nAll other functions on map should work fine.'</span>));
 }</pre></div></div>
             
         </li>

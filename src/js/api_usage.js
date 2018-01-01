@@ -24,7 +24,8 @@ function getFourSquareData (POIObj) {
   fetch(fsApiUrl)
     .then(response => response.json())
     .then(processFsApiResponseInContext)
-    .catch(err => Error(err));
+    .catch(err => alert('FourSquare data could not be loaded!' +
+      err + '\n\nAll other functions on map should work fine.'));
 }
 
 // Function to handle FourSquare API response.
