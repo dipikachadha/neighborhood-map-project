@@ -9,8 +9,9 @@ function initMap() {
         center: cary_NC,
         zoom: 12,
         style: myMapStyles
-    });
-}
+      });
+    }
+
 
 // Function to create custom styled markers for the map.
 function makeMarkerIcon(markerColor) {
