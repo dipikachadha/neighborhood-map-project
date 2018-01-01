@@ -8,6 +8,8 @@ html, body {
 /* A map styling is essential for it to display */
 #map {
   height: 100%;
+	width: 100%;
+
 	// Map is the bottom-most layer of our design
 	z-index: 0;
 }
@@ -42,6 +44,18 @@ aside li {
 
 aside #filter-string {
 	margin-left: 5px;
+}
+
+header {
+	opacity: 0.5;
+	filter: alpha(opacity=50); /* For IE8 and earlier */
+	background-color: rgba(0,255,0,0.5);
+	display: none;
+}
+
+header:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
 }
 
 /* Fix footer images and attributions */
