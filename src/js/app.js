@@ -55,8 +55,10 @@ function AppViewModel (map) {
   // TypeError or something likewise in the console.
   this.filterRegex = ko.computed(_ => {
     try {
-      return new RegExp(that.POIFilter());
+      // Generate a case-insensitive regex out of user input.
+      return new RegExp(that.POIFilter(), 'i');
     } catch (err) {
+      // Else simply warn the user, and return an empty regex to match all.
       alert('Invalid Input!');
       return new RegExp('');
     }
