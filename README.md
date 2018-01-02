@@ -57,6 +57,7 @@ GET file:///.../neighborhood-map-project/bower_components/materialize/dist/fonts
 - Fix markers?
 - Implement list toggle with KO.
 - Include more information out of FourSquare API -- like URL.
+- Include images in `dist` code.
 
 # Attributions
 Maps are pulled via Google API. Venue data is pulled from FourSquare.
