@@ -50,6 +50,13 @@ GET file:///.../neighborhood-map-project/bower_components/materialize/dist/fonts
 - Develop project to Udacity provided Rubric.
 - Pull points of interest from API instead of keeping a local copy.
 - Add custom map styling to map display.
+- Making the regex search case insensitive.
+- Adding more information from the FourSquare API
+- Fixing display of multiple InfoWindows.
+- Do something about the div display -- possible issue on smaller screens. Possibly move it off-screen.
+- Fix markers?
+- Implement list toggle with KO.
+- Include more information out of FourSquare API -- like URL.
 
 # Attributions
 Maps are pulled via Google API. Venue data is pulled from FourSquare.
