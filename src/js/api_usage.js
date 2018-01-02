@@ -21,24 +21,51 @@ function getFourSquareData (POIObj) {
   let processFsApiResponseInContext =
     _.partial(processFsApiResponse, POIObj);
 
+  console.log(fsApiUrl);
   fetch(fsApiUrl)
     .then(response => response.json())
-    .then(processFsApiResponseInContext)
-    .catch(err => alert('FourSquare data could not be loaded!' +
+    .then(response => {
+      // FourSquare needs venue-id to return ratings for the venue
+      const newReqUrl = 'https://api.foursquare.com/v2/venues/' +
+        response.response.venues[0].id + '?&client_id=' +
+        apiKeys.fsApi.client_sec + '&client_secret=' + apiKeys.fsApi.client_id +
+        '&v=20170801';
+      console.log(newReqUrl);
+      fetch(newReqUrl)
+        .then(response => response.json())
+        .then(processFsApiResponseInContext)
+        .catch(err => alert('Final call: FourSquare data could not be loaded!' +
+          err + '\n\nAll other functions on map should work fine.'));
+    })
+    .catch(err => alert('Init data: FourSquare data could not be loaded!' +
       err + '\n\nAll other functions on map should work fine.'));
 }
 
 // Function to handle FourSquare API response.
 function processFsApiResponse (context, response) {
   // response.response.venues = response.response.venues.length == 1;
-  let venue_name = 'Not Available!', venue_address = 'Not Available!';
+  console.log(response);
+  let venue_name = 'Not Available!', venue_address = 'Not Available!',
+    venue_url = 'Not Available!', venue_ratings = ['Not Available!', '#000'];
   try {
-    venue_name = response.response.venues[0].name;
+    venue_name = response.response.venue.name;
+  } finally {};
+  try {
     venue_address =
-      response.response.venues[0].location.formattedAddress.join('\n')
-  } finally {
-    // That's fine...
-  }
+      response.response.venue.location.formattedAddress.join('\n');
+  } finally {};
+  try {
+    venue_url = response.response.venue.canonicalUrl;
+  } finally {};
+  try {
+    venue_ratings = [response.response.venue.rating + '/10',
+      '#' + response.response.venue.ratingColor];
+    venue_ratings = venue_ratings[0] !== 'undefined/10' ? venue_ratings :
+      ['Not Available!', '#000'];
+  } catch(e) {
+      venue_ratings = ['Not Available!', '#000'];
+      // That's fine...
+    }
 
   context.infowindow = new google.maps.InfoWindow({
     content: `<div class="api_results">
@@ -50,8 +77,13 @@ function processFsApiResponse (context, response) {
           <td>${venue_name}</td>
         </tr>
         <tr>
-          <td>Address</td>
-          <td>${venue_address}</td>
+          <td>URL</td>
+          <td>${venue_url}</td>
+        </tr>
+        <tr>
+          <td>Rating</td>
+          <td style="color: ${venue_ratings[1]}; font-weight: bold">
+            ${venue_ratings[0]}</td>
         </tr>
       </tbody>
     </table>
