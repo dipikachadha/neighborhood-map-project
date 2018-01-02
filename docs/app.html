@@ -104,8 +104,23 @@ help filter as well using KO.</p>
             <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">this</span>.myPOIObjList = ko.observableArray(
     myPOIs.map(<span class="hljs-function"><span class="hljs-params">POI</span> =&gt;</span> <span class="hljs-keyword">new</span> POIObject(POI, map)));
 
-  <span class="hljs-keyword">this</span>.myPOIObjList().map(<span class="hljs-function"><span class="hljs-params">POI</span> =&gt;</span> getFourSquareData(POI));
+  <span class="hljs-keyword">this</span>.myPOIObjList().map(<span class="hljs-function"><span class="hljs-params">POI</span> =&gt;</span> getFourSquareData(POI));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Toggle visibility for the list display</p>
 
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">this</span>.toggleVisibility = <span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> $(<span class="hljs-string">"#wrapper"</span>).toggleClass(<span class="hljs-string">"active"</span>);
+  
   <span class="hljs-keyword">this</span>.currentPOI = ko.observable({});
 
   <span class="hljs-keyword">this</span>.selectThisPOI = <span class="hljs-function"><span class="hljs-params">POI</span> =&gt;</span>
@@ -117,11 +132,11 @@ help filter as well using KO.</p>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>The filter string is input by the user via the filter-string
 input in HTML. It needs to be converted to a regex for matching
@@ -134,11 +149,11 @@ against the full list later on.</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>Do the regex conversion here, and give a graceful alert if the
 input string is not a valid regex. It would otherwise give a hairy
@@ -147,10 +162,38 @@ TypeError or something likewise in the console.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">this</span>.filterRegex = ko.computed(<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> {
-    <span class="hljs-keyword">try</span> {
-      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(that.POIFilter());
-    } <span class="hljs-keyword">catch</span> (err) {
-      alert(<span class="hljs-string">'Invalid Input!'</span>);
+    <span class="hljs-keyword">try</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Generate a case-insensitive regex out of user input.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(that.POIFilter(), <span class="hljs-string">'i'</span>);
+    } <span class="hljs-keyword">catch</span> (err) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Else simply warn the user, and return an empty regex to match all.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      alert(<span class="hljs-string">'Invalid Input!'</span>);
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(<span class="hljs-string">''</span>);
     }
   });</pre></div></div>
@@ -158,11 +201,11 @@ TypeError or something likewise in the console.</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>Here we need to filter the myPOIObjList as per the user input above.
 A new ko.computed needs to be used instead of modifying the original
@@ -176,11 +219,11 @@ a bad search with no matches.</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>Filter the list first</p>
 
@@ -200,11 +243,11 @@ a bad search with no matches.</p>
         </li>
         
         
-        <li id="section-9">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>Save the context for the viewModel, in case we need to use the
 properties in some other function. Thereafter, apply KO bindings.</p>

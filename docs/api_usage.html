@@ -65,12 +65,10 @@ usage, such as FourSquare API.</p>
   <span class="hljs-keyword">let</span> processFsApiResponseInContext =
     _.partial(processFsApiResponse, POIObj);
 
+  <span class="hljs-built_in">console</span>.log(fsApiUrl);
   fetch(fsApiUrl)
     .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
-    .then(processFsApiResponseInContext)
-    .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> alert(<span class="hljs-string">'FourSquare data could not be loaded!'</span> +
-      err + <span class="hljs-string">'\n\nAll other functions on map should work fine.'</span>));
-}</pre></div></div>
+    .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {</pre></div></div>
             
         </li>
         
@@ -81,11 +79,24 @@ usage, such as FourSquare API.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>Function to handle FourSquare API response.</p>
+              <p>FourSquare needs venue-id to return ratings for the venue</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processFsApiResponse</span> (<span class="hljs-params">context, response</span>) </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">const</span> newReqUrl = <span class="hljs-string">'https://api.foursquare.com/v2/venues/'</span> +
+        response.response.venues[<span class="hljs-number">0</span>].id + <span class="hljs-string">'?&amp;client_id='</span> +
+        apiKeys.fsApi.client_sec + <span class="hljs-string">'&amp;client_secret='</span> + apiKeys.fsApi.client_id +
+        <span class="hljs-string">'&amp;v=20170801'</span>;
+      <span class="hljs-built_in">console</span>.log(newReqUrl);
+      fetch(newReqUrl)
+        .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.json())
+        .then(processFsApiResponseInContext)
+        .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> alert(<span class="hljs-string">'Final call: FourSquare data could not be loaded!'</span> +
+          err + <span class="hljs-string">'\n\nAll other functions on map should work fine.'</span>));
+    })
+    .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> alert(<span class="hljs-string">'Init data: FourSquare data could not be loaded!'</span> +
+      err + <span class="hljs-string">'\n\nAll other functions on map should work fine.'</span>));
+}</pre></div></div>
             
         </li>
         
@@ -96,16 +107,11 @@ usage, such as FourSquare API.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>response.response.venues = response.response.venues.length == 1;</p>
+              <p>Function to handle FourSquare API response.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">let</span> venue_name = <span class="hljs-string">'Not Available!'</span>, venue_address = <span class="hljs-string">'Not Available!'</span>;
-  <span class="hljs-keyword">try</span> {
-    venue_name = response.response.venues[<span class="hljs-number">0</span>].name;
-    venue_address =
-      response.response.venues[<span class="hljs-number">0</span>].location.formattedAddress.join(<span class="hljs-string">'\n'</span>)
-  } <span class="hljs-keyword">finally</span> {</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processFsApiResponse</span> (<span class="hljs-params">context, response</span>) </span>{</pre></div></div>
             
         </li>
         
@@ -116,11 +122,45 @@ usage, such as FourSquare API.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
+              <p>response.response.venues = response.response.venues.length == 1;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-built_in">console</span>.log(response);
+  <span class="hljs-keyword">let</span> venue_name = <span class="hljs-string">'Not Available!'</span>, venue_address = <span class="hljs-string">'Not Available!'</span>,
+    venue_url = <span class="hljs-string">'Not Available!'</span>, venue_ratings = [<span class="hljs-string">'Not Available!'</span>, <span class="hljs-string">'#000'</span>];
+  <span class="hljs-keyword">try</span> {
+    venue_name = response.response.venue.name;
+  } <span class="hljs-keyword">finally</span> {};
+  <span class="hljs-keyword">try</span> {
+    venue_address =
+      response.response.venue.location.formattedAddress.join(<span class="hljs-string">'\n'</span>);
+  } <span class="hljs-keyword">finally</span> {};
+  <span class="hljs-keyword">try</span> {
+    venue_url = response.response.venue.canonicalUrl;
+  } <span class="hljs-keyword">finally</span> {};
+  <span class="hljs-keyword">try</span> {
+    venue_ratings = [response.response.venue.rating + <span class="hljs-string">'/10'</span>,
+      <span class="hljs-string">'#'</span> + response.response.venue.ratingColor];
+    venue_ratings = venue_ratings[<span class="hljs-number">0</span>] !== <span class="hljs-string">'undefined/10'</span> ? venue_ratings :
+      [<span class="hljs-string">'Not Available!'</span>, <span class="hljs-string">'#000'</span>];
+  } <span class="hljs-keyword">catch</span>(e) {
+      venue_ratings = [<span class="hljs-string">'Not Available!'</span>, <span class="hljs-string">'#000'</span>];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
               <p>That’s fine…</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  }
+            <div class="content"><div class='highlight'><pre>    }
 
   context.infowindow = <span class="hljs-keyword">new</span> google.maps.InfoWindow({
     <span class="hljs-attr">content</span>: <span class="hljs-string">`&lt;div class="api_results"&gt;
@@ -132,8 +172,13 @@ usage, such as FourSquare API.</p>
           &lt;td&gt;<span class="hljs-subst">${venue_name}</span>&lt;/td&gt;
         &lt;/tr&gt;
         &lt;tr&gt;
-          &lt;td&gt;Address&lt;/td&gt;
-          &lt;td&gt;<span class="hljs-subst">${venue_address}</span>&lt;/td&gt;
+          &lt;td&gt;URL&lt;/td&gt;
+          &lt;td&gt;<span class="hljs-subst">${venue_url}</span>&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Rating&lt;/td&gt;
+          &lt;td style="color: <span class="hljs-subst">${venue_ratings[<span class="hljs-number">1</span>]}</span>; font-weight: bold"&gt;
+            <span class="hljs-subst">${venue_ratings[<span class="hljs-number">0</span>]}</span>&lt;/td&gt;
         &lt;/tr&gt;
       &lt;/tbody&gt;
     &lt;/table&gt;
@@ -143,11 +188,11 @@ usage, such as FourSquare API.</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>google.maps.event.addDomListener(window, ‘resize’, function() {
         context.infowindow.close();
@@ -161,11 +206,11 @@ debugger;</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>Function to get search results from FourSquare API.</p>
 
