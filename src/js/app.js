@@ -37,6 +37,9 @@ function AppViewModel (map) {
 
   this.myPOIObjList().map(POI => getFourSquareData(POI));
 
+  // Toggle visibility for the list display
+  this.toggleVisibility = _ => $("#wrapper").toggleClass("active");
+  
   this.currentPOI = ko.observable({});
 
   this.selectThisPOI = POI =>
