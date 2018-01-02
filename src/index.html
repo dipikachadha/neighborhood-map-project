@@ -28,15 +28,12 @@
           data-bind="click: toggleVisibility"></i>
       </h4>
 
-      <!-- An icon to withdraw the list if need be -->
-      <label for="list-toggle" id="list-toggle"></label>
-
-      <!-- An input area for user to type and filter -->
-      <input id="filter-string" type="search" placeholder="Type to search..."
-        data-bind="textInput: POIFilter"/>
-
       <!-- The full/filtered list of elements -->
       <div id="wrapper" class="active">
+        <!-- An input area for user to type and filter -->
+        <input id="filter-string" type="search" placeholder="Type to search..."
+          data-bind="textInput: POIFilter"/>
+
         <ul data-bind="foreach: filteredPOIList">
           <li data-bind="text: title, click: openInfo"></li>
         </ul>
