@@ -21,19 +21,24 @@ html, body {
 /**********************/
 aside {
 	position: absolute;
-  background: #000;
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
   font-size: 18px;
   color: #fff;
 	cursor: move;
+	transition: all 0.5s ease-in-out;
 
 	// Make a flex box as per filtered list
 	display: flex;
 	flex-direction: column;
 }
 
+aside:hover {
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
 aside #list_header {
-	background-color: #2196F3;
+	// background-color: #2196F3;
 	padding: 5px;
 }
 
