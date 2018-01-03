@@ -222,12 +222,16 @@ correct `this’ context.</p>
   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.getAnimation() !== <span class="hljs-literal">null</span>) {
       <span class="hljs-keyword">this</span>.setAnimation(<span class="hljs-literal">null</span>);
     } <span class="hljs-keyword">else</span> {
-      <span class="hljs-keyword">this</span>.setAnimation(google.maps.Animation.BOUNCE);
-      <span class="hljs-keyword">var</span> obj=<span class="hljs-keyword">this</span>;
-      setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-        obj.setAnimation(<span class="hljs-literal">null</span>);
-      }, <span class="hljs-number">2200</span>);
+      animateMarker.call(<span class="hljs-keyword">this</span>);
     }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">animateMarker</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">this</span>.setAnimation(google.maps.Animation.BOUNCE);
+  <span class="hljs-keyword">var</span> obj=<span class="hljs-keyword">this</span>;
+  setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    obj.setAnimation(<span class="hljs-literal">null</span>);
+  }, <span class="hljs-number">2100</span>);
 }</pre></div></div>
             
         </li>

@@ -68,10 +68,14 @@ function toggleBounce() {
   if (this.getAnimation() !== null) {
       this.setAnimation(null);
     } else {
-      this.setAnimation(google.maps.Animation.BOUNCE);
-      var obj=this;
-      setTimeout(function() {
-        obj.setAnimation(null);
-      }, 2200);
+      animateMarker.call(this);
     }
+}
+
+function animateMarker () {
+  this.setAnimation(google.maps.Animation.BOUNCE);
+  var obj=this;
+  setTimeout(function() {
+    obj.setAnimation(null);
+  }, 2100);
 }

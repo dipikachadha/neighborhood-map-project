@@ -21,8 +21,10 @@ function POIObject (POI, map) {
 
   // Create an onclick event to open the info window at each
   // marker.
-  this.openInfo = _ =>
+  this.openInfo = _ => {
     this.infowindow.open(map, this.mapMarker);
+    animateMarker.call(this.mapMarker);
+  };
 
   this.mapMarker.addListener('click', this.openInfo);
 }
@@ -39,14 +41,6 @@ function AppViewModel (map) {
 
   // Toggle visibility for the list display
   this.toggleVisibility = _ => $("#wrapper").toggleClass("active");
-  
-  this.currentPOI = ko.observable({});
-
-  this.selectThisPOI = POI =>
-    {
-      toggleBounce.call(POI.mapMarker);
-      this.currentPOI(POI, map);
-    };
 
   // The filter string is input by the user via the filter-string
   // input in HTML. It needs to be converted to a regex for matching

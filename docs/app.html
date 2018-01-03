@@ -78,8 +78,10 @@ marker.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">this</span>.openInfo = <span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">this</span>.openInfo = <span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> {
     <span class="hljs-keyword">this</span>.infowindow.open(map, <span class="hljs-keyword">this</span>.mapMarker);
+    animateMarker.call(<span class="hljs-keyword">this</span>.mapMarker);
+  };
 
   <span class="hljs-keyword">this</span>.mapMarker.addListener(<span class="hljs-string">'click'</span>, <span class="hljs-keyword">this</span>.openInfo);
 }
@@ -119,15 +121,7 @@ help filter as well using KO.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">this</span>.toggleVisibility = <span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> $(<span class="hljs-string">"#wrapper"</span>).toggleClass(<span class="hljs-string">"active"</span>);
-  
-  <span class="hljs-keyword">this</span>.currentPOI = ko.observable({});
-
-  <span class="hljs-keyword">this</span>.selectThisPOI = <span class="hljs-function"><span class="hljs-params">POI</span> =&gt;</span>
-    {
-      toggleBounce.call(POI.mapMarker);
-      <span class="hljs-keyword">this</span>.currentPOI(POI, map);
-    };</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">this</span>.toggleVisibility = <span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> $(<span class="hljs-string">"#wrapper"</span>).toggleClass(<span class="hljs-string">"active"</span>);</pre></div></div>
             
         </li>
         

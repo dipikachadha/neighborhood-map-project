@@ -21,7 +21,6 @@ function getFourSquareData (POIObj) {
   let processFsApiResponseInContext =
     _.partial(processFsApiResponse, POIObj);
 
-  console.log(fsApiUrl);
   fetch(fsApiUrl)
     .then(response => response.json())
     .then(response => {
@@ -30,7 +29,6 @@ function getFourSquareData (POIObj) {
         response.response.venues[0].id + '?&client_id=' +
         apiKeys.fsApi.client_sec + '&client_secret=' + apiKeys.fsApi.client_id +
         '&v=20170801';
-      console.log(newReqUrl);
       fetch(newReqUrl)
         .then(response => response.json())
         .then(processFsApiResponseInContext)
@@ -44,7 +42,6 @@ function getFourSquareData (POIObj) {
 // Function to handle FourSquare API response.
 function processFsApiResponse (context, response) {
   // response.response.venues = response.response.venues.length == 1;
-  console.log(response);
   let venue_name = 'Not Available!', venue_address = 'Not Available!',
     venue_url = 'Not Available!', venue_ratings = ['Not Available!', '#000'];
   try {
@@ -89,11 +86,6 @@ function processFsApiResponse (context, response) {
     </table>
     </div>`
   });
-
-  // google.maps.event.addDomListener(window, 'resize', function() {
-  //         context.infowindow.close();
-  //       });
-    // debugger;
 }
 
 // Function to get search results from FourSquare API.
